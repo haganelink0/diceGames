@@ -8,7 +8,7 @@ public interface IUserController {
 	
 	void saveUser(UserResponseDto user);
 	
-	void changeName(UserResponseDto user, String newName);
+	void changeName(Integer id, String newName);
 	
 	ResponseEntity<Iterable<UserResponseDto>> seeAllUsers();
 	
