@@ -85,6 +85,7 @@ public class GameResponseDto implements Game {
 		}
 	}
 
+	//makes sure the game is properly created and gives 0-1 response to account for winrate
 	@Override
 	public Integer resolveGame() {
 		Integer temporalResult = 0;
