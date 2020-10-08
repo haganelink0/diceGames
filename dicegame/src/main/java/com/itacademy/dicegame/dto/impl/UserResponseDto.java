@@ -5,15 +5,35 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import com.itacademy.dicegame.dto.Game;
 import com.itacademy.dicegame.dto.User;
 
+@Entity
+@Table(name="user")
 public class UserResponseDto implements User  {
 	
+	@Id
+	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(name="name")
 	private String name;
+	@Column(name="registration_date")
 	private String registrationDate;
+	@Column(name="game_history")
+	@OneToMany(mappedBy="user", cascade= {
+			CascadeType.ALL	})
 	private List<Game> gameHistory;
+	@Column(name="win_percen")
 	private double winPercen;
 	
 	public UserResponseDto() {

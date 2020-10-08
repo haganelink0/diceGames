@@ -11,7 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.itacademy.dicegame.dto.Game;
 
 @Entity
@@ -30,8 +32,9 @@ public class GameResponseDto implements Game {
 	private Result result;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name ="user_id")
+	@JsonIgnore
 	private UserResponseDto user;
-	
+	@Transient
 	private Random rdm = new Random();
 	
 	public GameResponseDto() {
