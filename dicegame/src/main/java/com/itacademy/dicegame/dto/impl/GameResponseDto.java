@@ -84,6 +84,14 @@ public class GameResponseDto implements Game {
 			this.result = Result.LOSE;
 		}
 	}
+	
+	public UserResponseDto getUser() {
+		return user;
+	}
+
+	public void setUser(UserResponseDto user) {
+		this.user = user;
+	}
 
 	//makes sure the game is properly created and gives 0-1 response to account for winrate
 	@Override

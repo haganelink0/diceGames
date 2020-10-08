@@ -96,6 +96,15 @@ public class UserResponseDto implements User  {
 		}
 		this.winPercen = gamesWon/result*100;
 	}
+
+	@Override
+	public void insertNewGame(Game game) {
+		this.gameHistory.add(game);
+		setWinPercen();
+		
+	}
+
+
 	
 	
 	
