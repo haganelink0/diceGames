@@ -1,6 +1,5 @@
 package com.itacademy.dicegame.service;
 
-import java.util.List;
 
 import com.itacademy.dicegame.dto.impl.UserResponseDto;
 
