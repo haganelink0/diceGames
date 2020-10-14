@@ -10,8 +10,7 @@ public interface UserService {
 	void saveUser(UserResponseDto user);
 	
 	Iterable<UserResponseDto> findAllUsers();
-	
-	UserResponseDto findUserByWinrate(Double winrate);
+
 	
 	
 

@@ -32,7 +32,7 @@ public class UserResponseDto implements User  {
 	@Column(name="game_history")
 	@OneToMany(mappedBy="user", cascade= {
 			CascadeType.ALL	})
-	private List<Game> gameHistory;
+	private List<GameResponseDto> gameHistory;
 	@Column(name="win_percen")
 	private double winPercen;
 	
@@ -76,11 +76,11 @@ public class UserResponseDto implements User  {
 		this.registrationDate = formatter.format(date);
 	}
 
-	public List<Game> getGameHistory() {
+	public List<GameResponseDto> getGameHistory() {
 		return gameHistory;
 	}
 
-	public void setGameHistory(List<Game> gameHistory) {
+	public void setGameHistory(List<GameResponseDto> gameHistory) {
 		this.gameHistory = gameHistory;
 	}
 
@@ -98,7 +98,7 @@ public class UserResponseDto implements User  {
 	}
 
 	@Override
-	public void insertNewGame(Game game) {
+	public void insertNewGame(GameResponseDto game) {
 		this.gameHistory.add(game);
 		setWinPercen();
 		

@@ -7,7 +7,5 @@ import com.itacademy.dicegame.dto.impl.UserResponseDto;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserResponseDto,Integer>{
-	
-	UserResponseDto findByWinrate(Double winrate);
 
 }
