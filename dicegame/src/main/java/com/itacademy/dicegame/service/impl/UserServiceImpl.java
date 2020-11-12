@@ -16,13 +16,9 @@ public class UserServiceImpl implements UserService {
 	UserRepository repository;
 
 	@Override
-	public UserResponseDto findUserById(Integer id) {
-		Optional<UserResponseDto> user = repository.findById(id);
-		if (user.isPresent()) {
-			return user.get();
-		} else {
-			return null;
-		}
+	public Optional<UserResponseDto> findUserById(Integer id) {
+		return repository.findById(id);
+		
 	}
 
 	@Override

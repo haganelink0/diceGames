@@ -1,7 +1,6 @@
 package com.itacademy.dicegame.dto.impl;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -34,20 +33,22 @@ public class UserResponseDto implements User  {
 			CascadeType.ALL	})
 	private List<GameResponseDto> gameHistory;
 	@Column(name="win_percen")
-	private double winPercen;
+	private Double winPercen;
 	
 	public UserResponseDto() {
 		super();
 	}
 
-	public UserResponseDto(Integer id, String name) {
+	public UserResponseDto(Integer id, String name, String registrationDate, List<GameResponseDto> gameHistory, Double winPercen) {
 		super();
 		this.id = id;
 		this.name = name;
-		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
-		Date date = new Date(System.currentTimeMillis());
-		this.registrationDate = formatter.format(date);
-		this.gameHistory = new ArrayList<>();
+		//SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+		//Date date = new Date(System.currentTimeMillis());
+		//this.registrationDate = formatter.format(date);
+		this.registrationDate = registrationDate;
+		this.gameHistory = gameHistory;
+		this.winPercen = winPercen;
 	}
 
 	public Integer getId() {

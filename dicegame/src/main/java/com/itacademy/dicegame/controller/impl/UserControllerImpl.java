@@ -1,5 +1,9 @@
 package com.itacademy.dicegame.controller.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,16 +40,21 @@ public class UserControllerImpl implements IUserController {
 	@Override
 	@PutMapping(path="/players/{id}")
 	public void changeName(@PathVariable Integer id,@RequestBody String newName) {
-		UserResponseDto bddUser = service.findUserById(id);
-		bddUser.setName(newName);
-		service.saveUser(bddUser);
+		Optional<UserResponseDto> bddUser = service.findUserById(id);
+		bddUser.get().setName(newName);
+		service.saveUser(bddUser.get());
 
 	}
 
 	@Override
 	@GetMapping(path="/players/")
-	public ResponseEntity<Iterable<UserResponseDto>> seeAllUsers() {
-		return new ResponseEntity<>(service.findAllUsers(), HttpStatus.OK);
+	public ResponseEntity<List<UserResponseDto>> seeAllUsers() {
+		List<UserResponseDto> users = new ArrayList<>();
+		Iterable<UserResponseDto> serverUsers = service.findAllUsers();
+		for(UserResponseDto user : serverUsers) {
+			users.add(user);
+		}
+		return new ResponseEntity<>(users, HttpStatus.OK);
 	}
 
 	@Override

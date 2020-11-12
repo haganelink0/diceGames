@@ -1,5 +1,7 @@
 package com.itacademy.dicegame.controller.impl;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,8 +30,8 @@ public class GameControllerImpl implements IGameController {
 	@Override
 	@PostMapping(path="/players/{id}/games/", consumes="application/json")
 	public void playGame(@PathVariable Integer id, @RequestBody GameResponseDto game) {
-		UserResponseDto tempUser = userService.findUserById(id);
-		game.setUser(tempUser);
+		Optional<UserResponseDto> tempUser = userService.findUserById(id);
+		game.setUser(tempUser.get());
 		gameService.saveGame(game);
 
 	}
@@ -37,16 +39,16 @@ public class GameControllerImpl implements IGameController {
 	@Override
 	@DeleteMapping(path="players/{id}/games")
 	public void deleteGameHistory(@PathVariable Integer id) {
-		UserResponseDto user = userService.findUserById(id);
-		gameService.deleteGameHistory(user);
+		Optional<UserResponseDto>  user = userService.findUserById(id);
+		gameService.deleteGameHistory(user.get());
 
 	}
 
 	@Override
 	@GetMapping(path="players/{id}/games")
 	public ResponseEntity<Iterable<GameResponseDto>> seeGameHistory(@PathVariable Integer id) {
-		UserResponseDto user = userService.findUserById(id);
-		Iterable<GameResponseDto> gameHistory = gameService.findGamesByUser(user);
+		Optional<UserResponseDto>  user = userService.findUserById(id);
+		Iterable<GameResponseDto> gameHistory = gameService.findGamesByUser(user.get());
 		return new ResponseEntity<>(gameHistory, HttpStatus.OK);
 	}
 
